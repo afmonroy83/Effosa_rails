@@ -1,0 +1,125 @@
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+  <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <div class="row fullscreen d-flex align-items-center justify-content-start">
+      <div class="banner-content col-lg-12">
+        <h6>FUNDACION ESCUELA DE FORMACION FORJANDO SUEÑOS ARTISTICOS</h6>
+        <span class="bar"></span>
+        <h1 class="text-white">
+          EFFOSA <br>
+        </h1>
+        <h2 class="text-white">
+          RESCATANDO RAICES CULTURALES CON IDENTIDAD AFRO
+
+        </h2>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start about-video Area -->
+<section class="about-video-area section-gap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 about-video-left">
+        <h1>
+          Música urbana como símbolo de apoyo a las víctimas del conflicto
+
+        </h1>
+        <p>
+          <span>Alcides, Alexis, Sebastián, Carlos, Mayke, Yulian y Luigy Antony son los compositores del pegajoso ritmo con el que homenajearán a todas aquellas personas que a causa del conflicto tuvieron que dejar su vida.</span>
+        </p>
+        <p>
+          Una oportunidad es el título de la canción compuesta por jóvenes víctimas del conflicto que hacen parte de la Escuela de Formación Forjando Sueños Artísticos (EFFOSA) ubicada en Soacha. El colectivo que reúne a más de 120 jóvenes es una iniciativa de emprendimiento cultural gestada desde la comuna 4 de Soacha.
+        </p>
+      </div>
+      <div >
+      <iframe width="560" height="415" src="https://www.youtube.com/embed/S1c1o6_BGi0" frameborder="0"  allowfullscreen autoplay></iframe>
+      </div>
+    </div>
+  </div>
+
+
+  <% @posts.each do |post| %>
+  <!-- Start home-about Area -->
+<section class="home-about-area section-gap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 home-about-left">
+        <% if post.attachments? %>
+          <% post.attachments.each do |attachment| %>
+            <%= link_to(image_tag(attachment.url, class: 'mx-auto d-block img-fluid', alt: 'Image'), attachment.url, target: '_blank') %>
+          <% end %>
+        <% else %>
+          <%= image_tag(post.image.url, class: 'mx-auto d-block img-fluid', alt: 'Image') if post.image? %>
+        <% end %>
+
+      </div>
+      <div class="col-lg-6 home-about-right">
+
+
+        <h1><%= post.title %></h1>
+        <p>
+        </p>
+        <p>
+          <%= post.body %>
+          <% if signed_in? %>
+           <%= link_to "Editar", edit_post_path(post) %>
+         <% end %>
+        </p>
+
+      </div>
+    </div>
+  </div>
+</section>
+<%end %>
+
+<section class="awSlider">
+  <div  class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target=".carousel" data-slide-to="0" class="active"></li>
+      <li data-target=".carousel" data-slide-to="1"></li>
+      <li data-target=".carousel" data-slide-to="2"></li>
+      <li data-target=".carousel" data-slide-to="3"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+      <div class="item active">
+        <img src="http://www.adobewordpress.com/wp-content/uploads/2014/02/wallpaper-thumb-941.jpg">
+        <div class="carousel-caption">Görsel #1</div>
+      </div>
+      <div class="item">
+        <img src="http://www.adobewordpress.com/wp-content/uploads/2014/02/wallpaper-thumb-101.jpg">
+        <div class="carousel-caption">Görsel #2</div>
+      </div>
+      <div class="item">
+        <img src="http://www.adobewordpress.com/wp-content/uploads/2014/02/wallpaper-thumb-1051.jpg">
+        <div class="carousel-caption">Görsel #3</div>
+      </div>
+      <div class="item">
+        <img src="http://www.adobewordpress.com/wp-content/uploads/2013/07/wallpaper-thumb-74.jpg">
+        <div class="carousel-caption">Görsel #4</div>
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href=".carousel" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+      <span class="sr-only">Geri</span>
+    </a>
+    <a class="right carousel-control" href=".carousel" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+      <span class="sr-only">İleri</span>
+    </a>
+  </div>
+</section>
+
+<h1>Posts</h1>
+
+<%= link_to 'Añadir Articulo', new_post_path %>
+
+<%= render @posts %>
